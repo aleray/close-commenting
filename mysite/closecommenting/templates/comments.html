@@ -1,0 +1,51 @@
+{% load comments %}
+{% load threadedcomments_tags %}
+{% load markup %}
+{% load url_utils %}
+{% load utils %}
+
+
+{% for comment in comment_list|fill_tree|annotate_tree %}
+
+    {% ifchanged comment.parent_id %}{% else %}
+        </li>
+    {% endifchanged %}
+
+    {% if not comment.open and not comment.close %}
+        </li>
+    {% endif %}
+
+    {% if comment.open %}
+        <ul>
+    {% endif %}
+
+    <li{% if comment.last %} class="last"{% endif %}>
+    
+    <div id="comment_{{ comment.id }}">
+        {{ comment.comment|markdown }}                            
+    </div>
+    
+    <div class="signature">
+        {% ifnotequal comment.user_url "" %}
+            by <a href="{{ comment.user_url }}">{{ comment.user_name }}</a>, 
+            {{ comment.submit_date|timesince }} ago
+        {% else %}
+            by {{ comment.user_name }}, {{ comment.submit_date|timesince }} ago
+        {% endifnotequal %}
+        | <a href='{% query_string "" "cc, cp, ct" %}cc={{ comment.id }}#add-comment'>reply</a>&nbsp;↩
+    </div>
+    
+    {% ifequal comment.id cc %}
+    
+        {% get_comment_form for comment_target as comment_form with comment.id %}
+        {% assign comment_on comment.comment %}
+        {% include 'comment-form.html' %}
+    
+    {% endifequal %}
+
+    {% for close in comment.close %}
+        </li>
+        </ul>
+    {% endfor %}
+
+{% endfor %}

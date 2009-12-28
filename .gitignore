@@ -1,0 +1,17 @@
+# Exclude common 'junk' files
+*.orig
+*.rej
+*~
+*.o
+*.pyc
+*.swp
+*.svn
+*.sock
+*.pid
+.DS_Store
+
+# Exclude per directory
+# Since repo/ contains a a .git repository,
+# it's rather a good idea to exclude it!
+resources/
+mysite/wmd/

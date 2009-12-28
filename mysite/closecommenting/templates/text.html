@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% load comments %}
+{% load threadedcomments_tags %}
+{% load markup %}
+{% load url_utils %}
+{% load utils %}
+
+
+{% block title %}
+    {{ text.dc_title }} 
+    by 
+    {% for creator in text.dc_creator.all %}
+        {{ creator }}
+    {% endfor %}
+{% endblock title %}
+
+
+{% block content %}
+    
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+        var elt = $("#metadata dl:first");
+        elt.hide();
+        $("#metadata p:first").click(function () {
+            elt.is(":hidden") ? elt.slideDown('fast') : elt.slideUp('fast');
+        });
+    });
+    </script>
+    
+    <div id="page">
+        
+        <div id="metadata">
+            <div class="content">
+                <p>Document metadata (↓View/Hide)</p>
+                <dl>
+                    <dt>Author{{ text.dc_creator.all|pluralize }}</dt>
+                    {% for creator in text.dc_creator.all %}
+                        <dd>{{ creator }}</dd>
+                    {% endfor %}
+                    <dt>Publishing Date</dt>
+                        <dd>{{ text.dc_date }}</dd>
+                    <dt>Language</dt>
+                        <dd>{{ text.dc_language }}</dd>
+                </dl>
+            </div>
+        </div>
+        
+        <table id="text-table">
+            <colgroup>
+                <col id="col-paragraphs" />
+                <col id="col-comments" />
+            </colgroup>
+                <tr>
+                    <td>
+                        <h1>{{ text.dc_title }}</h1>
+                    </td>
+                    <td></td>
+                </tr>
+            {% for paragraph in text.paragraph_set.all %}
+                <tr>
+                    <td>{{ paragraph.content|safe}}</td>
+                    <td>
+                        {% get_comment_count for paragraph as comment_count %}
+                        <div class="comment-count">
+                            <a href='{% query_string "" "cc, cp, ct" %}cp={{ paragraph.id }}#add-comment'>✎ {{ comment_count }}</a>                            
+                        </div>
+                        
+                        {% get_comment_list for paragraph as comment_list %}
+                        {% assign comment_target paragraph %}
+                        {% include 'comments.html' %}
+                        
+                        {% ifequal cp paragraph.id  %}
+                            {% get_comment_form for paragraph as comment_form %}
+                            {% assign comment_on paragraph.content %}
+                            {% include 'comment-form.html' %}
+                        {% endifequal %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <div id="general-comments">
+            <div class="content">
+                
+                {% get_comment_count for text as comment_count %}
+                <div id="general-comment-count">
+                    <a href='{% query_string "" "cc, cp, ct" %}ct={{ text.id }}#add-comment'>
+                        ✎ {{ comment_count }} general comment{{ comment_count|pluralize }}
+                    </a>
+                </div>
+                
+                {% get_comment_list for text as comment_list %}
+                {% assign comment_target text %}
+                {% include 'comments.html' %}
+                
+                {% ifequal ct text.id  %}
+                    {% get_comment_form for text as comment_form %}
+                    {% assign comment_on text.body %}
+                    {% include 'comment-form.html' %}
+                {% endifequal %}
+                
+            </div>
+        </div>
+        
+    </div>
+    
+{% endblock content %}

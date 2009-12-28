@@ -1,0 +1,44 @@
+{% load comments %}
+{% load threadedcomments_tags %}
+{% load markup %}
+{% load url_utils %}
+
+<div id='add-comment'>
+    <div class='comment-on'>
+        You are commenting on: 
+        <blockquote>
+            {{ comment_on|markdown|truncatewords_html:20}}
+        </blockquote>
+    </div>
+    <div class='comment-form'>
+
+<form method="post" action="/comments/post/">
+    <table id="comment-form">
+        {% for field in comment_form %}
+            {% if field.is_hidden %}
+                <p>{{ field }}</p>
+            {% else %}
+                    
+            {% if field.errors %} class="error"{% endif %}
+            
+            <tr {% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}>
+                <th>
+                    {{ field.label_tag }}
+                </th>
+                <td>
+                    {{ field }}
+                </td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+            <tr>
+                <th></th>
+                <td>
+                    <input type="submit" name="submit" class="submit-post" value="Post" />
+                    <input type="submit" name="preview" class="submit-preview" value="Preview" />
+                </td>
+            </tr>
+    </table>
+</form>
+    </div>
+</div>
