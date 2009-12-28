@@ -19,10 +19,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from rights.models import Right
-from geography.models import Language
-from people.models import Person
-
 from wmd.models import *
 import md5
 import re
@@ -68,21 +64,21 @@ class Document(models.Model):
         'type'        : _('The nature or genre of the resource.'),
     }
     
-    dc_contributor = models.ManyToManyField(Person, verbose_name=_('Contributors'), help_text=help_texts['contributor'])
-    dc_coverage    = models.CharField(max_length=50, verbose_name=_('Coverage'), help_text=help_texts['coverage'])
-    dc_creator     = models.ManyToManyField(Person, related_name='document_creator_set', verbose_name=_('Creators'), help_text=help_texts['creator'])
-    dc_date        = models.DateField(verbose_name=_('Date'), help_text=help_texts['date'])
-    dc_description = models.TextField(verbose_name=_('Description'), help_text=help_texts['description'])
-    dc_format      = models.CharField(max_length=50, verbose_name=_('Format'), help_text=help_texts['format'])
-    dc_identifier  = models.SlugField(verbose_name=_('Identifier'), help_text=help_texts['identifier'])
-    dc_language    = models.ForeignKey(Language, verbose_name=_('Language'), help_text=help_texts['language'])
-    dc_publisher   = models.ManyToManyField(Person, related_name='document_publisher_set', verbose_name=_('Publishers'), help_text=help_texts['publisher'])
-    dc_relation    = models.CharField(max_length=50, verbose_name=_('Relation'), help_text=help_texts['relation'])
-    dc_rights      = models.ManyToManyField(Right, related_name='document_right_set', verbose_name=_('Rights'), help_text=help_texts['rights'])
-    dc_source      = models.CharField(max_length=50, verbose_name=_('Source'), help_text=help_texts['source'])
-    dc_subject     = models.CharField(max_length=50, verbose_name=_('Subject'), help_text=help_texts['subject'])
-    dc_title       = models.CharField(max_length=50, verbose_name=_('Title'), help_text=help_texts['title'])
-    dc_type        = models.ForeignKey(DocumentType, verbose_name=_('Type'), help_text=help_texts['type'])
+    dc_contributor = models.TextField(blank=True, verbose_name=_('Contributors'), help_text=help_texts['contributor'])
+    dc_coverage    = models.TextField(blank=True, verbose_name=_('Coverage'), help_text=help_texts['coverage'])
+    dc_creator     = models.TextField(blank=True, verbose_name=_('Creators'), help_text=help_texts['creator'])
+    dc_date        = models.TextField(blank=True, verbose_name=_('Date'), help_text=help_texts['date'])
+    dc_description = models.TextField(blank=True, verbose_name=_('Description'), help_text=help_texts['description'])
+    dc_format      = models.TextField(blank=True, verbose_name=_('Format'), help_text=help_texts['format'])
+    dc_identifier  = models.TextField(blank=True, verbose_name=_('Identifier'), help_text=help_texts['identifier'])
+    dc_language    = models.TextField(blank=True, verbose_name=_('Language'), help_text=help_texts['language'])
+    dc_publisher   = models.TextField(blank=True, verbose_name=_('Publishers'), help_text=help_texts['publisher'])
+    dc_relation    = models.TextField(blank=True, verbose_name=_('Relation'), help_text=help_texts['relation'])
+    dc_rights      = models.TextField(blank=True, verbose_name=_('Rights'), help_text=help_texts['rights'])
+    dc_source      = models.TextField(blank=True, verbose_name=_('Source'), help_text=help_texts['source'])
+    dc_subject     = models.TextField(blank=True, verbose_name=_('Subject'), help_text=help_texts['subject'])
+    dc_title       = models.TextField(blank=True, verbose_name=_('Title'), help_text=help_texts['title'])
+    dc_type        = models.TextField(blank=True, verbose_name=_('Type'), help_text=help_texts['type'])
     
     # TODO
     # Define dublin core metadata using properties
@@ -117,35 +113,32 @@ class Text(Document):
         
         super(Text, self).save()
         
-        # # TODO: check Difflib and see how it could be integrated
-        # existing_paragraphs = Paragraph.objects.filter(text=self)
-        # output = markdown.markdown(self.body) 
-        # pattern = re.compile(r'<p>(.*?)</p>', re.S)
-        # new_paragraphs = [] # Creates a list of this form: [(paragraph_content , checksum), … ]
-        # 
-        # for match in pattern.findall(output):
-        #     if not match.isspace():
-        #         text = match.encode('utf-8')
-        #         hash = md5.new()
-        #         hash.update(text)
-        #         new_paragraphs.append((text, hash.hexdigest()))
-        #         
-        # new_checksums = set(t[1] for t in new_paragraphs)
-        # for p in existing_paragraphs:
-        #     if not p.checksum in new_checksums:
-        #         p.delete()
-        # 
-        # existing_checksums = set(p.checksum for p in existing_paragraphs)
-        # for p, cs in new_paragraphs:
-        #     if not cs in existing_checksums:
-        #         paragraph = Paragraph()
-        #         paragraph.text = self
-        #         paragraph.content = p
-        #         paragraph.checksum = cs
-        #         paragraph.save()
+        ## TODO: check Difflib and see how it could be integrated
         
         existing_paragraphs = Paragraph.objects.filter(text=self)
-        output = markdown.markdown(self.body, ['footnotes'])
+        md = markdown.Markdown(extensions=['meta', 'footnotes'])
+        output = md.convert(self.body)
+        
+        # Populates the metadata
+        print md.Meta
+        
+        self.dc_contributor = md.Meta.get('contributor', [''])[0]
+        self.dc_coverage    = md.Meta.get('coverage', [''])[0]
+        self.dc_creator     = md.Meta.get('creator', [''])[0]
+        self.dc_date        = md.Meta.get('date', [''])[0]
+        self.dc_description = md.Meta.get('description', [''])[0]
+        self.dc_format      = md.Meta.get('format', [''])[0]
+        self.dc_identifier  = md.Meta.get('identifier', [''])[0]
+        self.dc_language    = md.Meta.get('language', [''])[0]
+        self.dc_publisher   = md.Meta.get('publisher', [''])[0]
+        self.dc_relation    = md.Meta.get('relation', [''])[0]
+        self.dc_rights      = md.Meta.get('rights', [''])[0]
+        self.dc_source      = md.Meta.get('source', [''])[0]
+        self.dc_subject     = md.Meta.get('subject', [''])[0]
+        self.dc_title       = md.Meta.get('title', [''])[0]
+        self.dc_type        = md.Meta.get('type', [''])[0]
+        
+        super(Text, self).save()
         
         new_paragraphs = [] # Creates a list of this form: [(paragraph_content , checksum), … ]
         # soup = BeautifulSoup(output)

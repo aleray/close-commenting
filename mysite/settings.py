@@ -94,9 +94,6 @@ INSTALLED_APPS = (
     'django.contrib.comments',
     'threadedcomments',
     'markdown',
-    'geography',
-    'people',
-    'rights',
     'closecommenting',
 )
 
