@@ -82,6 +82,7 @@ ROOT_URLCONF = 'mysite.urls'
 
 TEMPLATE_DIRS = (
     os.path.join(DIRNAME, 'templates'),
+    os.path.join(DIRNAME, 'markedit/templates'),
 )
 
 INSTALLED_APPS = (
@@ -95,6 +96,7 @@ INSTALLED_APPS = (
     'threadedcomments',
     'markdown',
     'closecommenting',
+    'markedit',
 )
 
 COMMENTS_APP = 'threadedcomments'
