@@ -25,13 +25,6 @@ class TextAdmin(MarkEditAdmin):
         (None, {
             'fields': ('body',),
         }),
-        # (_('Metadata'), {
-        #     'fields': (
-        #         'dc_contributor', 'dc_coverage', 'dc_creator', 'dc_date', 'dc_description', 
-        #         'dc_format', 'dc_identifier', 'dc_language', 'dc_publisher', 'dc_relation', 
-        #         'dc_rights', 'dc_source', 'dc_subject', 'dc_title', 'dc_type'
-        #     ),
-        # }),
     )
     class MarkEdit:
         fields = ['body',]
