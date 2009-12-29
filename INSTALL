@@ -1,2 +1,10 @@
 Dependencies:
-* python-markdown 2+ (http://pypi.python.org/pypi/Markdown)
+* Django >= 1.1 http://www.djangoproject.org/
+* Django Threaded-Comments http://github.com/ericflo/django-threadedcomments
+* jquery-markedit http://github.com/tstone/jquery-markedit/
+* python-markdown 2 http://pypi.python.org/pypi/Markdown/
+
+That's it!?
+
+More very soon!
+
