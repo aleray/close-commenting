@@ -19,7 +19,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from wmd.models import *
 import md5
 import re
 import markdown
@@ -101,7 +100,7 @@ class Text(Document):
     Describes a text document.
     """
     
-    body = MarkDownField(verbose_name=_('Body'))
+    body = models.TextField(verbose_name=_('Body'))
         
     def save(self):
         """
