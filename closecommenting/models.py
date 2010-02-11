@@ -20,6 +20,8 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from dcdocuments.models import Document
 
+from textwrap import dedent
+
 import md5, re, markdown
 from BeautifulSoup import BeautifulSoup
 
@@ -29,7 +31,27 @@ class Text(Document):
     Describes a text document.
     """
     
-    body = models.TextField(verbose_name=_('Body'))
+    body = models.TextField(verbose_name=_('Body'), default=dedent("""\
+        contributor: [ex: "Reinfurt"]
+        coverage:    [ex: "Berlin, Germany"]
+        creator:     [ex: "David Reinfurt"]
+                     [ex: "Alexandre Leray"]
+        date:        [ex: "01/01/2002"]
+        description: [ex: "David Reinfurt explains some things"]
+        format:      [ex: "text/markdown"]
+        identifier:  [ex: "one-possible-scenario-for-a-collective-future"]
+        language:    [ex: "English"]
+        publisher:   [ex: "Dot Dot Dot"]
+        relation:    [ex: "Dot Dot Dot 6"]
+        rights:      [ex: "Copyright David Reinfurt"]
+        source:      [ex: "Issue Magazine"]
+        subject:     [ex: "Open Source"]
+                     [ex: "Graphic Design"]
+        title:       [ex: "One Possible Scenario for a Collective Future"]
+        type:        [ex: "Essay"]
+        
+        """)
+    )
         
     def save(self):
         """
