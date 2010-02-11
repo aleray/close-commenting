@@ -1,5 +1,7 @@
 # *-* encoding: utf-8 *-*
 
+## Copyright 2010 Stéphanie Vilayphiou, Alexandre Leray
+
 ## This file is part of Close Commenting.
 ## 
 ## Close Commenting is free software: you can redistribute it and/or modify
