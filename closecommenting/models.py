@@ -44,7 +44,7 @@ class Text(Document):
         ## TODO: check Difflib and see how it could be integrated
         
         existing_paragraphs = Paragraph.objects.filter(text=self)
-        md = markdown.Markdown(extensions=['meta', 'footnotes'])
+        md = markdown.Markdown(extensions=['meta', 'footnotes', 'def_list'])
         output = md.convert(self.body)
         
         # Populates the metadata
