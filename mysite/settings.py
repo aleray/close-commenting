@@ -94,7 +94,7 @@ INSTALLED_APPS = (
     'django.contrib.markup',
     'django.contrib.comments',
     'threadedcomments',
-#    'markdown',
+    'dcdocuments',
     'closecommenting',
     'markedit',
 )

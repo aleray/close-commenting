@@ -7,13 +7,14 @@ from django.utils.safestring import mark_safe
 
 register = template.Library()
 
+
 @register.inclusion_tag('_response.html', takes_context=True)
 def query_string(context, add=None, remove=None):
     """
     Allows the addition and removal of query string parameters.
     
     _response.html is just {{ response }}
-
+    
     Usage:
     http://www.url.com/{% query_string "param_to_add=value, param_to_add=value" "param_to_remove, params_to_remove" %}
     http://www.url.com/{% query_string "" "filter" %}filter={{new_filter}}
@@ -25,7 +26,8 @@ def query_string(context, add=None, remove=None):
     params = dict( context['request'].GET.items())
     response = get_query_string(params, add, remove)
     return {'response': response }
-    
+
+
 # lib/utils.py
 def get_query_string(p, new_params=None, remove=None):
     """
@@ -43,14 +45,15 @@ def get_query_string(p, new_params=None, remove=None):
         elif v is not None:
             p[k] = v
     return mark_safe('?' + '&amp;'.join([u'%s=%s' % (k, v) for k, v in p.items()]).replace(' ', '%20'))
-    
+
+
 def string_to_dict(string):
     """
-    Usage::
-    
-        {{ url|thumbnail:"width=10,height=20" }}
-        {{ url|thumbnail:"width=10" }}
-        {{ url|thumbnail:"height=20" }}
+    Usage:
+
+    {{ url|thumbnail:"width=10,height=20" }}
+    {{ url|thumbnail:"width=10" }}
+    {{ url|thumbnail:"height=20" }}
     """
     kwargs = {}
     if string:
@@ -65,11 +68,12 @@ def string_to_dict(string):
             kwargs[kw] = val
     return kwargs
 
+
 def string_to_list(string):
     """
-    Usage::
-    
-        {{ url|thumbnail:"width,height" }}
+    Usage:
+
+    {{ url|thumbnail:"width,height" }}
     """
     args = []
     if string:
@@ -82,3 +86,4 @@ def string_to_list(string):
             if arg == '': continue
             args.append(arg)
     return args
+

@@ -31,3 +31,4 @@ def do_assign(parser, token):
     return AssignNode(bits[1], value)
 
 register.tag('assign', do_assign)
+
