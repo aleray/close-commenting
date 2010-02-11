@@ -8,11 +8,7 @@
 
 
 {% block title %}
-    {{ text.dc_title }} 
-    by 
-    {% for creator in text.dc_creator.all %}
-        {{ creator }}
-    {% endfor %}
+    {{ text.dc_title }} by {{ text.dc_creator }} 
 {% endblock title %}
 
 
