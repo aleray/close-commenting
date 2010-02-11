@@ -15,3 +15,4 @@
 # it's rather a good idea to exclude it!
 resources/
 mysite/wmd/
+mysite/mysite.db
