@@ -8,7 +8,7 @@ from django.utils.safestring import mark_safe
 register = template.Library()
 
 
-@register.inclusion_tag('_response.html', takes_context=True)
+@register.inclusion_tag('closecommenting/_response.html', takes_context=True)
 def query_string(context, add=None, remove=None):
     """
     Allows the addition and removal of query string parameters.
@@ -61,7 +61,7 @@ def string_to_dict(string):
         if ',' not in string:
             # ensure at least one ','
             string += ','
-        for arg in string.split(','):
+        for arg in string.split(' ,'):
             arg = arg.strip()
             if arg == '': continue
             kw, val = arg.split('=', 1)
@@ -84,6 +84,6 @@ def string_to_list(string):
         for arg in string.split(','):
             arg = arg.strip()
             if arg == '': continue
-            args.append(arg)
+            args.append(arg) 
     return args
 

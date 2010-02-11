@@ -39,7 +39,7 @@ def text_detail(request, slug):
         queryset = Text.objects.all(),
         slug = slug,
         slug_field = 'dc_identifier',
-        template_name = 'text.html',
+        template_name = 'closecommenting/text.html',
         template_object_name = 'text',
         extra_context = {
             'view': view, 

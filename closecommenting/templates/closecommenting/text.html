@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'closecommenting/base.html' %}
 
 {% load comments %}
 {% load threadedcomments_tags %}
@@ -68,12 +68,12 @@
                         
                         {% get_comment_list for paragraph as comment_list %}
                         {% assign comment_target paragraph %}
-                        {% include 'comments.html' %}
+                        {% include 'closecommenting/comments.html' %}
                         
                         {% ifequal cp paragraph.id  %}
                             {% get_comment_form for paragraph as comment_form %}
                             {% assign comment_on paragraph.content %}
-                            {% include 'comment-form.html' %}
+                            {% include 'closecommenting/comment-form.html' %}
                         {% endifequal %}
                     </td>
                 </tr>
@@ -91,12 +91,12 @@
                 
                 {% get_comment_list for text as comment_list %}
                 {% assign comment_target text %}
-                {% include 'comments.html' %}
+                {% include 'closecommenting/comments.html' %}
                 
                 {% ifequal ct text.id  %}
                     {% get_comment_form for text as comment_form %}
                     {% assign comment_on text.body %}
-                    {% include 'comment-form.html' %}
+                    {% include 'closecommenting/comment-form.html' %}
                 {% endifequal %}
                 
             </div>
