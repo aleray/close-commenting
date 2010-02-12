@@ -130,6 +130,10 @@ class Text(Document):
                 paragraph.order = i
                 paragraph.save()
             i += 1
+    
+    @models.permalink
+    def get_absolute_url(self):
+        return ('closecommenting-detail', (), {'slug': self.dc_identifier,})
 
 
 # TODO:
