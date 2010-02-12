@@ -30,10 +30,8 @@
             <div class="content">
                 <p>Document metadata (↓View/Hide)</p>
                 <dl>
-                    <dt>Author{{ text.dc_creator.all|pluralize }}</dt>
-                    {% for creator in text.dc_creator.all %}
-                        <dd>{{ creator }}</dd>
-                    {% endfor %}
+                    <dt>Creator</dt>
+                        <dd>{{ text.dc_creator }}</dd>
                     <dt>Publishing Date</dt>
                         <dd>{{ text.dc_date }}</dd>
                     <dt>Language</dt>
