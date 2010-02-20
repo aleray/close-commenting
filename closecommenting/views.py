@@ -28,12 +28,16 @@ def text_detail(request, slug):
     view = request.GET.get('view', 'unfold'), 
     # cp = int(request.GET['cp']) if 'cp' in request.GET else None
     # cc = int(request.GET['cc']) if 'cc' in request.GET else None
+    
+    # cp = comment of a paragraph
     cp = request.GET.get('cp', None)
     try: cp = int(cp)
     except: pass
+    # cc = comment of a comment
     cc = request.GET.get('cc', None)
     try: cc = int(cc)
     except: pass
+    # ct = comment of a text
     ct = request.GET.get('ct', None)
     try: ct = int(ct)
     except: pass
