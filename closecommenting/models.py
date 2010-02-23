@@ -24,7 +24,7 @@ from dcdocuments.models import Document
 
 from textwrap import dedent
 
-import md5, re, markdown
+import hashlib, re, markdown
 from BeautifulSoup import BeautifulSoup
 
 
@@ -98,13 +98,13 @@ class Text(Document):
         
         # Iterates through each first level node
         for p in BeautifulSoup(output):
+            print p
             # Excludes empty text nodes
             if not unicode(p.string).encode('utf-8').isspace():
                 # Encode the node content and computes its md5 hash
                 text = unicode(p).encode('utf-8')
-                hash = md5.new()
-                hash.update(text)
-                new_paragraphs.append((text, hash.hexdigest()))
+                checksum = hashlib.sha1(text)
+                new_paragraphs.append((text, checksum.hexdigest()))
         
         # Creates a set of the new paragraphs checksums
         new_checksums = set(t[1] for t in new_paragraphs)
