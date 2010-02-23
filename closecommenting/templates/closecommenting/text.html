@@ -19,7 +19,7 @@
         var elt = $("#metadata dl:first");
         elt.hide();
         $("#metadata p:first").click(function () {
-            elt.is(":hidden") ? elt.slideDown('fast') : elt.slideUp('fast');
+            elt.slideToggle('fast');
         });
     });
     </script>
