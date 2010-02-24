@@ -57,11 +57,11 @@
                     <td>
                         {% get_comment_count for paragraph as comment_count %}
                         <div class="comment-count">
-                            <a href='#' class='collapse'> ⬇</a>
+                            <a href='#' class='collapse-block'> ⬇</a>
                             {{ comment_count }} comment(s)
                             <a href='{% query_string "" "cc, cp, ct" %}cp={{ paragraph.id }}#add-comment'>✎</a>
                         </div>
-                        
+                        <div class='comment-block'>
                         {% get_comment_list for paragraph as comment_list %}
                         {% assign comment_target paragraph %}
                         {% include 'closecommenting/comments.html' %}
@@ -71,6 +71,7 @@
                             {% assign comment_on paragraph.content %}
                             {% include 'closecommenting/comment-form.html' %}
                         {% endifequal %}
+                        </div>
                     </td>
                 </tr>
             {% endfor %}

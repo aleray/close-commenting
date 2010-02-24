@@ -16,12 +16,12 @@
     {% endif %}
 
     {% if comment.open %}
-        <ul class='comment-block'>
+        <ul>
     {% endif %}
 
     <li{% if comment.last %} class="last"{% endif %}>
     
-    <div id="comment_{{ comment.id }}">
+    <div id="comment_{{ comment.id }}" class='comment-text'>
         {{ comment.comment|markdown }}                            
     </div>
     
@@ -32,7 +32,7 @@
         {% else %}
             by {{ comment.user_name }}, {{ comment.submit_date|timesince }} ago
         {% endifnotequal %}
-        | <a href='{% query_string "" "cc, cp, ct" %}cc={{ comment.id }}#add-comment'>reply</a>&nbsp;↩
+        | <a href='{% query_string "" "cc, cp, ct" %}cc={{ comment.id }}#add-comment'>reply</a>&nbsp;↩ <a href='#' class='collapse-one'>⬆</a>
     </div>
     
     {% ifequal comment.id cc %}

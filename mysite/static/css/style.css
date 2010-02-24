@@ -38,7 +38,6 @@ li { list-style-type: none; padding-top: 18px; }
 div.signature { color: gray; }
 a { color: inherit; }
 a:hover { color: MediumBlue;}
-a.collapse { border: 0 !important; }
 .comment-on { margin: 34px 0 18px 0; }
 .comment-form { margin-bottom: 34px; }
 .comment-form p { padding: 0.1em 0; }
@@ -51,7 +50,9 @@ div.comment-count a { text-decoration: none; border-left: 3px solid black; paddi
 #general-comment-count a { text-decoration: none; }
 /*div.comment-count a:hover,  #general-comment-count a:hover { background-color: lightgray; }
 */
-ul.comment-block { display: none; }
+div.comment-block { display: none; }
+div.comment-text { height: auto; overflow: hidden; margin-bottom: 0.4em; border-bottom: 1px dashed gray; }
+a.collapse-one { text-decoration: none; }
 
 #comment-form { width: 100%; }
 #comment-form td { padding: 0 0 18px 18px; }
