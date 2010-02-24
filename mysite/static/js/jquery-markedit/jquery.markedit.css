@@ -30,7 +30,7 @@
 .markedit-dialog { font-size: 0.75em; }
 .markedit-dialog input { width: 100%; }
 
-.markedit textarea { font-family: Courier; width: 600px; height: 600px; }
+.markedit textarea { font-family: Monospace; font-size: 12px; line-height: 1.25em; width: 600px; height: 600px; }
 
 .markedit-preview { padding: 15px; width: 50%; }
 .markedit-preview, .markedit-preview p, .markedit-preview h1, .markedit-preview h2, .markedit-preview h3, .markedit-preview ul { font-family: Helvetica, sans-serif; font-size: 14px !important; line-height: 18px; letter-spacing: 0.1px; }
