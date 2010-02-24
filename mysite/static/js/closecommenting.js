@@ -1,5 +1,12 @@
 
 $(document).ready(function() {
+    // Hide metadata at loading
+    var elt = $("#metadata dl:first");
+    elt.hide();
+    $("#metadata p:first").click(function () {
+        elt.slideToggle('fast');
+    });
+    
     // If add-comment form, then comment-block is visible
     if ($('#add-comment', $(this).parents()[1]).css('display') == 'block') {
         $('.comment-block', $(this).parents()[1]).css('display', 'block');
