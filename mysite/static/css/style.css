@@ -49,6 +49,8 @@ div.comment-count a { text-decoration: none; border-left: 3px solid black; paddi
 #general-comment-count a { text-decoration: none; }
 div.comment-count a:hover,  #general-comment-count a:hover { background-color: lightgray; }
 
+ul.comment-block { display: none; }
+
 #comment-form { width: 100%; }
 #comment-form td { padding: 0 0 18px 18px; }
 

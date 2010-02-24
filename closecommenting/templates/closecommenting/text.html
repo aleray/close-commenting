@@ -57,7 +57,7 @@
                     <td>
                         {% get_comment_count for paragraph as comment_count %}
                         <div class="comment-count">
-                            <a href='{% query_string "" "cc, cp, ct" %}cp={{ paragraph.id }}#add-comment'>✎ {{ comment_count }}</a>                            
+                            <a href='{% query_string "" "cc, cp, ct" %}cp={{ paragraph.id }}#add-comment'>✎ {{ comment_count }}</a> <a href='#' class='collapse'>⬆</a>                           
                         </div>
                         
                         {% get_comment_list for paragraph as comment_list %}
