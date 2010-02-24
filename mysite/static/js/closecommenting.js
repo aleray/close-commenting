@@ -17,7 +17,7 @@ $(document).ready(function() {
         }
     });
 
-    // Show/Hide single comment
+    // Truncate single comment
     $('.collapse-one').toggle(function(e) {
         e.preventDefault();
         $('.comment-text', $(this).parents()[1]).css('height', '0.8em');
@@ -27,4 +27,16 @@ $(document).ready(function() {
         $('.comment-text', $(this).parents()[1]).css('height', 'auto');
         $(this).text('⬆');
     });
+    
+    // Truncate all single comments
+    $('.preview-all').toggle(function(e) {
+        e.preventDefault();
+        $('.comment-text', $(this).parents()[1]).css('height', '0.8em');
+        $(this).text('collapse all');
+    }, function(e) {
+        e.preventDefault();
+        $('.comment-text', $(this).parents()[1]).css('height', 'auto');
+        $(this).text('uncollapse all');
+    });
+        
 });

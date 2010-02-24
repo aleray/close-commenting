@@ -60,6 +60,7 @@
                             <a href='#' class='collapse-block'> ⬇</a>
                             {{ comment_count }} comment(s)
                             <a href='{% query_string "" "cc, cp, ct" %}cp={{ paragraph.id }}#add-comment'>✎</a>
+                            <a href='#' class='preview-all'>collapse all</a>
                         </div>
                         <div class='comment-block'>
                         {% get_comment_list for paragraph as comment_list %}
