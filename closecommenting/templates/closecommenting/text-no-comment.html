@@ -39,40 +39,14 @@
                 </dl>
             </div>
         </div>
-        
-        <table id="text-table">
-            <colgroup>
-                <col id="col-paragraphs" />
-                <col id="col-comments" />
-            </colgroup>
-                <tr>
-                    <td>
-                        <h1>{{ text.dc_title }}</h1>
-                    </td>
-                    <td></td>
-                </tr>
-            {% for paragraph in text.paragraph_set.all %}
-                <tr>
-                    <td>{{ paragraph.content|safe}}</td>
-                    <td>
-                        {% get_comment_count for paragraph as comment_count %}
-                        <div class="comment-count">
-                            <a href='{% query_string "" "cc, cp, ct" %}cp={{ paragraph.id }}#add-comment'>✎ {{ comment_count }}</a>                            
-                        </div>
-                        
-                        {% get_comment_list for paragraph as comment_list %}
-                        {% assign comment_target paragraph %}
-                        {% include 'closecommenting/comments.html' %}
-                        
-                        {% ifequal cp paragraph.id  %}
-                            {% get_comment_form for paragraph as comment_form %}
-                            {% assign comment_on paragraph.content %}
-                            {% include 'closecommenting/comment-form.html' %}
-                        {% endifequal %}
-                    </td>
-                </tr>
-            {% endfor %}
-        </table>
+
+        <div id="text">
+            <div class="content">
+                <h1>{{ text.dc_title }}</h1>
+                {{ text.body_html|safe }}
+            </div>
+        </div>
+
         <div id="general-comments">
             <div class="content">
                 

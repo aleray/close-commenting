@@ -24,7 +24,7 @@ from dcdocuments.models import Document
 
 from textwrap import dedent
 
-import md5, re, markdown
+import hashlib, re, markdown
 from BeautifulSoup import BeautifulSoup
 
 
@@ -54,6 +54,7 @@ class Text(Document):
         
         """)
     )
+    body_html = models.TextField(null=True, blank=True)
         
     def save(self):
         """
@@ -63,14 +64,19 @@ class Text(Document):
         Non-Matching checksum paragraphs are deleted.
         """
         
+        ## TODO: check if we can get rid of the save() redundency
         super(Text, self).save()
         
         ## TODO: check Difflib and see how it could be integrated
         
+        # Retrieves existing paragraphs
         existing_paragraphs = Paragraph.objects.filter(text=self)
+        # Converts markdown to HTML
         md = markdown.Markdown(extensions=['meta', 'footnotes', 'def_list'])
         output = md.convert(self.body)
-        
+        # cache the html
+        self.body_html = output
+
         # Populates the metadata
         self.dc_contributor = md.Meta.get('contributor', [''])[0]
         self.dc_coverage    = md.Meta.get('coverage', [''])[0]
@@ -90,29 +96,47 @@ class Text(Document):
         
         super(Text, self).save()
         
-        new_paragraphs = [] # Creates a list of this form: [(paragraph_content , checksum), … ]
-        # soup = BeautifulSoup(output)
-        # for p in soup.findAll(text=True)
-        for p in BeautifulSoup(output):
-            if not unicode(p.string).encode('utf-8').isspace():
-                text = unicode(p).encode('utf-8')
-                hash = md5.new()
-                hash.update(text)
-                new_paragraphs.append((text, hash.hexdigest()))
+        # Creates a list of tuples (paragraph_content , checksum)
+        new_paragraphs = [] 
         
+        # Iterates through each first level node
+        for p in BeautifulSoup(output):
+            print p
+            # Excludes empty text nodes
+            if not unicode(p.string).encode('utf-8').isspace():
+                # Encode the node content and computes its md5 hash
+                text = unicode(p).encode('utf-8')
+                checksum = hashlib.sha1(text)
+                new_paragraphs.append((text, checksum.hexdigest()))
+        
+        # Creates a set of the new paragraphs checksums
         new_checksums = set(t[1] for t in new_paragraphs)
+        # Deletes removed paragraphs
         for p in existing_paragraphs:
             if not p.checksum in new_checksums:
                 p.delete()
-
+        
+        # Creates a set of the existing paragraphs checksums
         existing_checksums = set(p.checksum for p in existing_paragraphs)
+        i = 0
         for p, cs in new_paragraphs:
-            if not cs in existing_checksums:
+            if cs in existing_checksums:
+                # update existing paragaraph order
+                paragraph = existing_paragraphs.get(checksum=cs)
+                paragraph.order = i
+                paragraph.save()
+            else:
                 paragraph = Paragraph()
                 paragraph.text = self
                 paragraph.content = p
                 paragraph.checksum = cs
+                paragraph.order = i
                 paragraph.save()
+            i += 1
+    
+    @models.permalink
+    def get_absolute_url(self):
+        return ('closecommenting-detail', (), {'slug': self.dc_identifier,})
 
 
 # TODO:
@@ -126,7 +150,11 @@ class Paragraph(models.Model):
     text     = models.ForeignKey(Text)
     content  = models.TextField()
     checksum = models.CharField(max_length=32)
+    order    = models.IntegerField(blank=True, null=True)
     
     def __unicode__(self):
         return u'%s' % self.content[0:100]
+    
+    class Meta:
+        ordering = ('order',)
 

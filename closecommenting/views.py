@@ -25,7 +25,7 @@ def text_detail(request, slug):
     """
     Returns a text
     """
-    view = request.GET.get('view', 'unfold'), 
+    view = request.GET.get('view', 'unfold') 
     # cp = int(request.GET['cp']) if 'cp' in request.GET else None
     # cc = int(request.GET['cc']) if 'cc' in request.GET else None
     
@@ -41,13 +41,18 @@ def text_detail(request, slug):
     ct = request.GET.get('ct', None)
     try: ct = int(ct)
     except: pass
+    print view 
+    if view == 'unfold':
+        template_name = 'closecommenting/text.html'
+    else:
+        template_name = 'closecommenting/text-no-comment.html'
     
     return list_detail.object_detail(
         request, 
         queryset = Text.objects.all(),
         slug = slug,
         slug_field = 'dc_identifier',
-        template_name = 'closecommenting/text.html',
+        template_name = template_name,
         template_object_name = 'text',
         extra_context = {
             'view': view, 
