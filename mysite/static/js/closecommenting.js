@@ -45,5 +45,15 @@ $(document).ready(function() {
         $('.comment-text', $(this).parents()[1]).css('height', 'auto');
         $(this).text('uncollapse all');
     });
+    // Show/Hide all comments of the text
+    $('#all-comments').toggle(function(e) {
+        e.preventDefault();
+        $('.comment-block').css('display', 'block');
+        $(this).text('hide all comments');
+    }, function(e) {
+        e.preventDefault();
+        $('.comment-block').css('display', 'none');
+        $(this).text('show all comments');
+    });
         
 });
