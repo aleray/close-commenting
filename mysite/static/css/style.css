@@ -34,7 +34,7 @@ ul ul { margin-top: 18px; }
 
 li:first-child { padding-top: 0; }
 li { list-style-type: none; padding-top: 18px; }
-
+p#author { font-size: 18px; }
 div.signature { color: gray; }
 a { color: inherit; }
 a:hover { color: MediumBlue;}
