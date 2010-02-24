@@ -1,0 +1,75 @@
+{% extends 'closecommenting/base.html' %}
+
+{% load comments %}
+{% load threadedcomments_tags %}
+{% load markup %}
+{% load url_utils %}
+{% load utils %}
+
+
+{% block title %}
+    {{ text.dc_title }} by {{ text.dc_creator }} 
+{% endblock title %}
+
+
+{% block content %}
+    
+    <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+        var elt = $("#metadata dl:first");
+        elt.hide();
+        $("#metadata p:first").click(function () {
+            elt.slideToggle('fast');
+        });
+    });
+    </script>
+    
+    <div id="page">
+        
+        <div id="metadata">
+            <div class="content">
+                <p>Document metadata (↓View/Hide)</p>
+                <dl>
+                    <dt>Creator</dt>
+                        <dd>{{ text.dc_creator }}</dd>
+                    <dt>Publishing Date</dt>
+                        <dd>{{ text.dc_date }}</dd>
+                    <dt>Language</dt>
+                        <dd>{{ text.dc_language }}</dd>
+                </dl>
+            </div>
+        </div>
+
+        <div id="text">
+            <div class="content">
+                <h1>{{ text.dc_title }}</h1>
+                {{ text.body_html|safe }}
+            </div>
+        </div>
+
+        <div id="general-comments">
+            <div class="content">
+                
+                {% get_comment_count for text as comment_count %}
+                <div id="general-comment-count">
+                    <a href='{% query_string "" "cc, cp, ct" %}ct={{ text.id }}#add-comment'>
+                        ✎ {{ comment_count }} general comment{{ comment_count|pluralize }}
+                    </a>
+                </div>
+                
+                {% get_comment_list for text as comment_list %}
+                {% assign comment_target text %}
+                {% include 'closecommenting/comments.html' %}
+                
+                {% ifequal ct text.id  %}
+                    {% get_comment_form for text as comment_form %}
+                    {% assign comment_on text.body %}
+                    {% include 'closecommenting/comment-form.html' %}
+                {% endifequal %}
+                
+            </div>
+        </div>
+        
+    </div>
+    
+{% endblock content %}
