@@ -67,6 +67,8 @@ blockquote q:after { content: '\2019'; }
 
 dd { padding-left: 18px; }
 #metadata p:hover { cursor: pointer; }
+#metadata { font-size: 10px; line-height: 1.5em; }
+#metadata dt { font-weight: bold; float: left; margin-right: 0.5em; }
 /*#metadata { -moz-column-width:10em; -moz-column-gap:18px; }*/
 
 .markedit textarea { font-family: Helvetica; }
