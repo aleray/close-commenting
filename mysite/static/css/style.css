@@ -1,6 +1,6 @@
 /* PAGE */
-#page { width : 75em; }
-.content { padding: 18px; }
+div#page { width : 75em; }
+div.content { padding: 18px; }
 html, body { font-family: Helvetica, sans-serif; font-size: 13px; line-height: 17px; letter-spacing: 0.1px; }
 body { padding: 34px; }
 
@@ -33,14 +33,14 @@ li { list-style-type: none; padding-top: 18px; }
 /* TABLE */
 table#text-table { table-layout: fixed; }
     table#text-table td { vertical-align: top; padding: 18px;}
-    #col-paragraphs, #col-comments { width: 50%; }
+    col#col-paragraphs, col#col-comments { width: 50%; }
 
 
 /* TEXT */
 p#author { font-size: 18px; }
-#metadata { font-size: 10px; line-height: 1.5em; }
-#metadata p:hover { cursor: pointer; }
-#metadata dt { font-weight: bold; float: left; margin-right: 0.5em; }
+div#metadata { font-size: 10px; line-height: 1.5em; }
+div#metadata p:hover { cursor: pointer; }
+div#metadata dt { font-weight: bold; float: left; margin-right: 0.5em; }
 div#text { width: 50%; }
 div#text p { margin-bottom: 17px; }
 div#text h1 { margin-bottom: 34px; }
@@ -58,13 +58,13 @@ div.comment-block { display: none; }
     div.signature { color: gray; }
     a.collapse-one { text-decoration: none; }
     /* ADD COMMENT */
-    .comment-on { margin: 34px 0 18px 0; }
-    .comment-form { margin-bottom: 34px; }
-    .comment-form p { padding: 0.1em 0; }
-    .comment-form input[type='text'] { border: 0; border-bottom: 3px solid black; height: 13px; line-height: 18px; font-size: 13px; font-family: Helvetica, sans-serif; }
-    .comment-form textarea { width: auto; height: 20em; border: 3px solid black; vertical-align: top; font-family: Helvetica, sans-serif; line-height: 1.3em; margin-bottom: 15px; }
-    .comment-form input[type='submit'] { padding: 0 ; margin: 0; padding-top: 2px; margin-top: -2px; border-style: none; background-color: black; color: white; font-size: 13px; line-height: 18px; font-family: Helvetica, sans-serif; }
+    div.comment-on { margin: 34px 0 18px 0; }
+    div.comment-form { margin-bottom: 34px; }
+    div.comment-form p { padding: 0.1em 0; }
+    div.comment-form input[type='text'] { border: 0; border-bottom: 3px solid black; height: 13px; line-height: 18px; font-size: 13px; font-family: Helvetica, sans-serif; }
+    div.comment-form textarea { width: auto; height: 20em; border: 3px solid black; vertical-align: top; font-family: Helvetica, sans-serif; line-height: 1.3em; margin-bottom: 15px; }
+    div.comment-form input[type='submit'] { padding: 0 ; margin: 0; padding-top: 2px; margin-top: -2px; border-style: none; background-color: black; color: white; font-size: 13px; line-height: 18px; font-family: Helvetica, sans-serif; }
         table#comment-form { width: 100%; }
         table#comment-form td { padding: 0 0 18px 18px; }
-#general-comment-count a { text-decoration: none; }
-#general-comments { width : 50%; border-top: 3px solid black; }
+div#general-comment-count a { text-decoration: none; }
+div#general-comments { width : 50%; border-top: 3px solid black; }
