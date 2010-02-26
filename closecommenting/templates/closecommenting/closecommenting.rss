@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel>
+        
+        <title>Close Commenting latest comments</title>
+        <link>http://example.com/</link>
+        <description>Close Commenting latest comments</description>
+        <pubDate>Fri, 26 Feb 2010 00:00:01 GMT</pubDate>
+        <lastBuildDate>{% now "r" %}</lastBuildDate>
+        <language>en</language>
+        
+        {% for comment, parent in comments %}
+        <item>
+            <title>Comment on "{{ text }}"</title>
+            <link>http://localhost:8000/texts/{{ text.dc_identifier }}.html?cp={{ comment.object_pk }}#add-comment</link>
+            <pubDate>{{ comment.submit_date|date:'r' }}</pubDate>
+            <author>{{ comment.user_email }} ({{ comment.user_name }})</author>
+            {% load markup %}
+            <description>
+            {{ comment.name }} commented on:
+            "{{ parent|striptags|truncatewords:15 }}" --
+            {{ comment.comment }}
+            </description>
+        </item>
+        {% endfor %}
+    </channel>
+</rss>
