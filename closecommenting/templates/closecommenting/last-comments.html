@@ -1,0 +1,16 @@
+<ul>
+{% for comment, parent in comments %}
+    <li>
+        <p>{{ comment.submit_date|timesince }} ago,</p>
+        <p>
+            {% if c comment.user_url %}
+                <a href=''>{{ comment.user_name }}</a>
+            {% else %}
+                {{ comment.user_name }}
+            {% endif %}
+            commented on:</p>
+        <p>"{{ parent|striptags|truncatewords:15 }}"</p>
+        <p><a href='{% url closecommenting-detail parent.dc_identifier %}'>{{ comment.comment|truncatewords:15 }}</a></p>
+    </li>
+{% endfor %}
+</ul>
