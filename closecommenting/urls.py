@@ -7,7 +7,7 @@ from closecommenting.feeds import LatestEntries
 urlpatterns = patterns('',
     url(r'^(?P<slug>[-\w]+).html$', view=text_views.text_detail, name='closecommenting-detail'),
     url(r'^(?P<slug>[-\w]+).mdx$', view=text_views.text_detail, name='closecommenting-mdx'),
-    url(r'^rss$', view=text_views.rss, name='closecommenting-rss'),
+    url(r'^feeds/comments$', view=text_views.rss, name='closecommenting-rss'),
 )
 
 feeds = {

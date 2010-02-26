@@ -7,7 +7,6 @@ admin.autodiscover()
 urlpatterns = patterns('',
     (r'^texts/', include('closecommenting.urls')),
     (r'^comments/', include('django.contrib.comments.urls')),
-    (r'^rss/', include('closecommenting.urls')),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:
