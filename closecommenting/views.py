@@ -70,17 +70,7 @@ def rss(request):
     my_dict = {}
     comments = ThreadedComment.objects.all().order_by('-submit_date')[:5]
     comment_list = []
-    for c in comments:
-        paragraph = Paragraph.objects.get(pk=int(c.object_pk))
-        text = paragraph.text
-        #if comment of a comment
-        if c.parent:
-            comment_list.append([c, c.parent.comment])
-        #if comment of a paragraph
-        else:
-            comment_list.append([c, paragraph.content.encode('utf-8')])
-    my_dict['text'] = text
-    my_dict['comments'] = comment_list
+    my_dict['comments'] = comments
     return render_to_response('closecommenting/closecommenting.rss', my_dict, context_instance=RequestContext(request))
     
     

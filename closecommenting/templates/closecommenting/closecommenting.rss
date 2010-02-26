@@ -10,16 +10,16 @@
         <lastBuildDate>{% now "r" %}</lastBuildDate>
         <language>en</language>
         
-        {% for comment, parent in comments %}
+        {% for comment in comments %}
         <item>
-            <title>Comment on "{{ text }}"</title>
+            <title>Comment on "{{ comment.content_object.text }}"</title>
             <link>http://localhost:8000/texts/{{ text.dc_identifier }}.html?cp={{ comment.object_pk }}#add-comment</link>
             <pubDate>{{ comment.submit_date|date:'r' }}</pubDate>
             <author>{{ comment.user_email }} ({{ comment.user_name }})</author>
             {% load markup %}
             <description>
             {{ comment.name }} commented on:
-            "{{ parent|striptags|truncatewords:15 }}" --
+            "{{ comment.content_object|striptags|truncatewords:15 }}" --
             {{ comment.comment }}
             </description>
         </item>
