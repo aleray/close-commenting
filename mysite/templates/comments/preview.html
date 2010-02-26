@@ -1,0 +1,52 @@
+{% extends 'closecommenting/base.html' %}
+{% load i18n %}
+{% load markup %}
+
+{% block title %}{% trans "Preview your comment" %}{% endblock %}
+
+{% block content %}
+<div style='width: 30em'>
+  {% load comments %}
+  <form action="{% comment_form_target %}" method="post">
+    {% if next %}<input type="hidden" name="next" value="{{ next }}" />{% endif %}
+    {% if form.errors %}
+    <h2>{% blocktrans count form.errors|length as counter %}Please correct the error below{% plural %}Please correct the errors below{% endblocktrans %}</h2>
+    {% else %}
+    <h2>{% trans "Preview your comment" %}</h2>
+      <p style='margin: 1em 0;'>{{ comment|markdown }}</p>
+      <p style='margin-bottom: 2em;'>
+      <input type="submit" name="submit" class="submit-post" value="{% trans "Post your comment" %}" id="submit" />
+      </p>
+      
+      <h2>{% trans "or make changes" %}:</h2>
+    {% endif %}
+    <div class='comment-form'>
+    <table id="comment-form">
+        {% for field in form %}
+            {% if field.is_hidden %}
+                <p>{{ field }}</p>
+            {% else %}
+            
+            <tr {% if field.errors %} class="error"{% endif %} {% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}>
+                <th>
+                    {{ field.label_tag }}
+                </th>
+                <td>
+                    {{ field }}
+                </td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+            <tr>
+                <th></th>
+                <td>
+                    <input type="submit" name="submit" class="submit-post" value="{% trans "Post" %}" />
+                    <input type="submit" name="preview" class="submit-preview" value="{% trans "Preview" %}" />
+                </td>
+            </tr>
+    </table>
+    </div>
+    
+  </form>
+</div>
+{% endblock %}

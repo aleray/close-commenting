@@ -19,9 +19,10 @@
                 <p>{{ field }}</p>
             {% else %}
                     
-            {% if field.errors %} class="error"{% endif %}
-            
-            <tr {% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}>
+            <tr 
+                {% if field.errors %} class="error"{% endif %}
+                {% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}
+            >
                 <th>
                     {{ field.label_tag }}
                 </th>
@@ -34,6 +35,7 @@
             <tr>
                 <th></th>
                 <td>
+                    <input type="hidden" name="next" value="{% url closecommenting-detail text.dc_identifier %}{% query_string "" "c, cc, cp, ct" %}cp={{ paragraph.id }}#add-comment" />
                     <input type="submit" name="submit" class="submit-post" value="Post" />
                     <input type="submit" name="preview" class="submit-preview" value="Preview" />
                 </td>

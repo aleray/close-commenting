@@ -62,8 +62,9 @@ div.comment-block { display: none; }
     div.comment-form { margin-bottom: 34px; }
     div.comment-form p { padding: 0.1em 0; }
     div.comment-form input[type='text'] { border: 0; border-bottom: 3px solid black; height: 13px; line-height: 18px; font-size: 13px; font-family: Helvetica, sans-serif; }
-    div.comment-form textarea { width: auto; height: 20em; border: 3px solid black; vertical-align: top; font-family: Helvetica, sans-serif; line-height: 1.3em; margin-bottom: 15px; }
-    div.comment-form input[type='submit'] { border: 3px solid #000; background: none; color: black; padding: 0 ; margin: 0; padding-top: 2px; margin-top: -2px; font-size: 13px; font-weight: bold; line-height: 18px; font-family: Helvetica, sans-serif; }
+    div.comment-form textarea { width: auto; height: 20em; border: 3px solid black; vertical-align: top; font-family: Helvetica, sans-serif; font-size: 13px; line-height: 1.3em; margin-bottom: 15px; }
+    input[type='submit'] { border: 3px solid #000; background: none; color: black; padding: 0 ; margin: 0; padding-top: 2px; margin-top: -2px; font-size: 13px; font-weight: bold; line-height: 18px; font-family: Helvetica, sans-serif; }
+    .error { color:red;}
         table#comment-form { width: 100%; }
         table#comment-form td { padding: 0 0 18px 18px; }
 div#general-comment-count a { text-decoration: none; }
