@@ -69,7 +69,6 @@ def text_detail(request, slug):
 def rss(request):
     my_dict = {}
     comments = ThreadedComment.objects.all().order_by('-submit_date')[:5]
-    comment_list = []
     my_dict['comments'] = comments
     return render_to_response('closecommenting/closecommenting.rss', my_dict, context_instance=RequestContext(request))
     
