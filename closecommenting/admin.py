@@ -22,6 +22,8 @@ class TextForm(forms.ModelForm):
          }
 
 class TextAdmin(MarkEditAdmin):
+    list_filter = ['dc_creator','dc_language', 'dc_subject' ]
+    list_display = ('dc_title', 'dc_language', 'dc_creator', 'dc_date', 'dc_subject')
     fieldsets = (
         (None, {
             'fields': ('body',),

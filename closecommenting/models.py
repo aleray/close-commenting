@@ -137,6 +137,8 @@ class Text(Document):
     @models.permalink
     def get_absolute_url(self):
         return ('closecommenting-detail', (), {'slug': self.dc_identifier,})
+    class Meta:
+        ordering = ['dc_title']
 
 
 # TODO:
