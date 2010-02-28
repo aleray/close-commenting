@@ -1,13 +1,13 @@
 /* PAGE */
 div#page { width : 75em; }
 div.content { padding: 18px; }
-html, body { font-family: Helvetica, sans-serif; font-size: 13px; line-height: 17px; letter-spacing: 0.1px; }
+html, body { font-family: Helvetica, sans-serif; font-size: 13px; line-height: 18px; letter-spacing: 0.1px; }
 body { padding: 34px; }
 
 
 /* REDEFINITION OF TAGS */
 h1, h2 { font-weight: normal; }
-h1 { font-size: 26px; line-height: 34px;  }
+h1 { font-size: 26px; line-height: 36px;  }
 h2 { font-weight: bold; display: inline; border-bottom: 3px solid black; }
 a { color: inherit; }
 a:hover { color: MediumBlue;}
@@ -42,11 +42,11 @@ div#metadata { font-size: 10px; line-height: 1.5em; }
 div#metadata p:hover { cursor: pointer; }
 div#metadata dt { font-weight: bold; float: left; margin-right: 0.5em; }
 div#text { width: 50%; }
-div#text p { margin-bottom: 17px; }
-div#text h1 { margin-bottom: 34px; }
-div#text h2 + p { margin-top: 17px; }
+div#text p { margin-bottom: 18px; }
+div#text h1 { margin-bottom: 36px; }
+div#text h2 + p { margin-top: 18px; }
 div#text img { display: block; margin: 0 auto;  }
-div#text img + img { margin-top: 17px;  }
+div#text img + img { margin-top: 18px;  }
 div#text span.legend { color: red; }
 
 
@@ -58,14 +58,27 @@ div.comment-block { display: none; }
     div.signature { color: gray; }
     a.collapse-one { text-decoration: none; }
     /* ADD COMMENT */
-    div.comment-on { margin: 34px 0 18px 0; }
-    div.comment-form { margin-bottom: 34px; }
+    div.comment-on { margin: 36px 0 18px 0; }
+    div.comment-form { margin-bottom: 36px; }
     div.comment-form p { padding: 0.1em 0; }
     div.comment-form input[type='text'] { border: 0; border-bottom: 3px solid black; height: 13px; line-height: 18px; font-size: 13px; font-family: Helvetica, sans-serif; }
-    div.comment-form textarea { width: auto; height: 20em; border: 3px solid black; vertical-align: top; font-family: Helvetica, sans-serif; font-size: 13px; line-height: 1.3em; margin-bottom: 15px; }
+    div.comment-form textarea { width: auto; height: 20em; border: 3px solid black; vertical-align: top; font-family: Monospace; font-size: 13px; line-height: 1.3em; }
     input[type='submit'] { border: 3px solid #000; background: none; color: black; padding: 0 ; margin: 0; padding-top: 2px; margin-top: -2px; font-size: 13px; font-weight: bold; line-height: 18px; font-family: Helvetica, sans-serif; }
     .error { color:red;}
         table#comment-form { width: 100%; }
         table#comment-form td { padding: 0 0 18px 18px; }
 div#general-comment-count a { text-decoration: none; }
 div#general-comments { width : 50%; border-top: 3px solid black; }
+
+
+/* MARKEDIT */
+.ui-widget-header { border-bottom: 0 !important; background: #FFF; color: #000000; font-weight: bold; margin: 0.5em 0; }
+.markedit-toolbar { padding: 0 !important; margin: 0; clear: both; height: 22px; }
+.markedit-toolbar .toolbar-group { margin-right: 0.5em; padding: 0 !important; float: left; }
+.markedit-preview { padding: 18px; width: auto !important; }
+.markedit-preview * { font-family: Helvetica, sans-serif; font-size: 13px !important; line-height: 18px; letter-spacing: 0.1px; }
+.markedit-preview h1, 
+.markedit-preview h2 { font-weight: normal; background: none; color: black;}
+.markedit-preview h1 { font-size: 26px; line-height: 36px; }
+.markedit-preview h2 { font-weight: bold; display: inline; border-bottom: 3px solid black; }
+.markedit-preview p { padding: 0 0 0.5em 0 !important; margin: 0 !important;}

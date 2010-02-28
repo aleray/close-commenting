@@ -3,13 +3,10 @@
 
 .markedit-toolbar { padding: 0.3em; margin: 0; clear: both; height: 22px; }
 .markedit-toolbar .toolbar-group { margin-right: 0.5em; padding: 0 0 0 5px; float: left; }
-.markedit-toolbar .toggle-group {  }
-.markedit-toolbar .toggle-group button { font-size: 0.85em; font-weight: bold; margin-top: 2px; padding-bottom: 2px; border: 1px solid black; height: 1.75em; }
-.markedit-toolbar .toggle-group button:first-child { -moz-border-radius-bottomleft:11px; -moz-border-radius-topleft:11px; -moz-border-radius-bottomright:0; -moz-border-radius-topright:0; }
-.markedit-toolbar .toggle-group button:last-child { -moz-border-radius-bottomleft:0; -moz-border-radius-topleft:0; -moz-border-radius-bottomright:11px; -moz-border-radius-topright:11px; }
+.markedit-toolbar .toggle-group button { font-family: Helvetica, Sans-Serif; text-transform: uppercase; font-size: 11px; font-weight: normal; color: black; padding: 0; padding-top: 5px;}
+.markedit-toolbar .toggle-group button:first-child:after { content: ' /'; }
 
-.markedit-toolbar button { height: 22px; outline: 0; cursor: pointer; }
-.markedit-toolbar button.icon { width: 22px; background-repeat: no-repeat; margin: 0 5px 0 0; }
+.markedit-toolbar button { outline: 0; cursor: pointer; }
 .markedit .light-bg button.icon { background-image: url(/static/css/markedit/images/wmd-buttons.png); }
 .markedit .dark-bg button.icon { background-image: url(/static/css/markedit/images/wmd-buttons-dark.png); }
 
