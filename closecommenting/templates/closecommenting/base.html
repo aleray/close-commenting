@@ -11,28 +11,9 @@
     <link rel="stylesheet" href="/static/css/style.css" type="text/css" media="screen" title="no title" charset="utf-8" />
     <script type="text/javascript" src="/static/js/jquery-1.3.2.min.js"></script>
     <script type="text/javascript" src="/static/js/jquery-ui-1.7.2.custom.min.js"></script>
-
-    <script type="text/javascript" src="/static/js/jquery-markedit/jquery.markedit.js"></script>
-    <script type="text/javascript" src="/static/js/jquery-markedit/showdown.js"></script>
-
-    <link type="text/css" rel="stylesheet" href="/static/css/markedit/jquery-ui-1.7.2.custom.css" /> <!-- if using jQuery UI -->
-    <link type="text/css" rel="stylesheet" href="/static/css/markedit/jquery.markedit.css" />
-
-
     <script type="text/javascript" src="/static/js/closecommenting.js"></script>
-    
-    <script type="text/javascript">
-            $(function() {
-                $('#id_comment').markedit({
-                    'preview' : 'toolbar',
-                    'toolbar' : {
-                        'backgroundMode': 'light',
-                        'layout' : 'bold italic link quote'
-                    }
-                });
-            });
-        </script>
 
+    {% block extra-head %}{% endblock %}
 </head>
 
 <body>
