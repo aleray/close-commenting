@@ -5,7 +5,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'^texts/', include('closecommenting.urls')),
+    (r'^', include('closecommenting.urls')),
     (r'^comments/', include('django.contrib.comments.urls')),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
