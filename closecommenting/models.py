@@ -101,7 +101,7 @@ class Text(Document):
         
         # Iterates through each first level node
         for p in BeautifulSoup(output):
-            print p
+            # print p
             # Excludes empty text nodes
             if not unicode(p.string).encode('utf-8').isspace():
                 # Encode the node content and computes its md5 hash

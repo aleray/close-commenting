@@ -45,7 +45,7 @@ def text_detail(request, slug):
     ct = request.GET.get('ct', None)
     try: ct = int(ct)
     except: pass
-    print view 
+    # print view 
     template_name = 'closecommenting/text.html'
     
     return list_detail.object_detail(
